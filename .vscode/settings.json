@@ -1,0 +1,21 @@
+{
+    "files.associations": {
+        "cstdarg": "c",
+        "cstdio": "c",
+        "stdio.h": "c",
+        "ioreader.h": "c",
+        "type_traits": "cpp",
+        "json.h": "c",
+        "bit": "c",
+        "cmath": "c",
+        "compare": "c",
+        "concepts": "c",
+        "cstdlib": "c",
+        "limits": "c",
+        "new": "c",
+        "*.tcc": "c",
+        "cstdint": "c",
+        "typeinfo": "c"
+    },
+    "editor.renderWhitespace": "all"
+}

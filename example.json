@@ -1,0 +1,17 @@
+{
+    "monitoring": {},
+  
+    "maximters": {},
+  
+    "flexLogic": {
+      "scripts": [0, 1, 2],
+      "functions": [0, 1, 2],
+      "setpoint": 
+      {
+        "bool": [true, false, true],
+        "int": [0, 1, 2],
+        "float": [0.0, 1.0, 2.0]
+  
+      }	
+    }
+  }
