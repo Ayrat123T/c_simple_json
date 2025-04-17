@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include "ioreader.h"
 #include "json.h"
-
+#include <math.h>
 Node* TestNode(char* json) {
     Node* root = LoadNode(&json);
     if (root) {
         // Обработка JSON
-        PrintNode(root);
-        FreeNode(root);
+        //PrintNode(root);
+        //FreeNode(root);
     } else {
         printf("Failed to parse JSON\n");
     }
@@ -89,19 +89,19 @@ void test7() {
     fclose(fp);
 }
 
-int CalcGrafSumm(size_t i, const Array* points) {
-    const char* key_str = MapAt(&points->items[i]->map_value, "type")->key;
-    /*if (key_str == "RESULT") {
-        return CalcGrafSumm(points[i].AsMap(points).MapAt(points,"node").AsInt(points) - 1, points);
-    } else if (key_str == "SUM") {
-        double nodes = points[i].AsMap(points).MapAt(points,"node").AsDouble(points);
-        int first_node = int(nodes) - 1;
+int CalcGrafSumm(size_t i, const Array points) {
+    Node* root = points.items[i];
+    const char* value_str = AsString(MapAt(&root->map_value, "type")->value);
+    if (!strcmp(value_str, "RESULT")) {
+        return CalcGrafSumm(AsInt(MapAt(&root->map_value, "node")->value) - 1, points);
+    } else if (!strcmp(value_str, "SUM")) {
+        double nodes = AsDouble(MapAt(&root->map_value, "node")->value);
+        int first_node = (int)nodes - 1;
         int second_node = ceil(modf(nodes, &nodes) * 10) - 1;
-        return  CalcGrafSumm(first_node, points) + CalcGrafSumm(second_node, points);
-    } else if (key_str == "CONST") {
-        return points[i].AsMap(points).MapAt(points,"val").AsInt();
-    }*/
-   return 1;
+        return CalcGrafSumm(first_node, points) + CalcGrafSumm(second_node, points);
+    } else if (!strcmp(value_str, "CONST")) {
+        return AsInt(MapAt(&root->map_value, "val")->value);
+    }
 }
 
 void test8() {
@@ -142,10 +142,9 @@ void test8() {
     Node* doc = TestNode(json_str);
     int res = 0;
 
-    for (int i = 0; i < AsMap(doc)->size; i++) {
-        const Array points =  AsMap(doc)->items[i]->value->array_value;
-        printf("%d", CalcGrafSumm(points.size - 1, &points));
-
+    for (int i = 0; i < AsMap(doc).size; i++) {
+        const Array points = AsArray(AsMap(doc).items[i]->value);
+        printf("%d", CalcGrafSumm(points.size - 2, points)); // следует поправить size почему то на 1 больше
     }
 }
 

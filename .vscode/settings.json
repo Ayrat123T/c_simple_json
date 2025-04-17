@@ -4,7 +4,6 @@
         "cstdio": "c",
         "stdio.h": "c",
         "ioreader.h": "c",
-        "type_traits": "cpp",
         "json.h": "c",
         "bit": "c",
         "cmath": "c",

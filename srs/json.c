@@ -23,7 +23,7 @@ void MapInsert(Map * map, MapItem * item) {
 
 MapItem* MapAt(Map * map, const char * key) {
     for (size_t i = 0; i < map->size; ++i) {
-        if (strcmp(map->items[i]->key, key)) {
+        if (!(strcmp(map->items[i]->key, key))) {
             return map->items[i];
         }
     }
@@ -317,18 +317,18 @@ bool IsMap(Node* node) {
     return node->type == NODE_MAP;
 }
 
-const Array* AsArray(Node* node) {
+const Array AsArray(Node* node) {
     if (IsArray(node)) {
-        return &(node->array_value);
+        return node->array_value;
     }
     else {
         perror("Node is not Array");
     }
 }
 
-const Map* AsMap(Node* node) {
+const Map AsMap(Node* node) {
     if (IsMap(node)) {
-        return &(node->map_value);
+        return node->map_value;
     }
     else {
         perror("Node is not Map");

@@ -45,7 +45,7 @@ void PrintNode(Node* node) {
         case NODE_ARRAY:
             printf("    %c\n\r", '[');
             for (size_t i = 0; i < node->array_value.size; ++i) {
-                PrintNode((*AsArray(node)).items[i]);
+                PrintNode((AsArray(node)).items[i]);
                 if (i != node->array_value.size - 1) {
                     printf("%c", ',');
                 }
@@ -55,7 +55,7 @@ void PrintNode(Node* node) {
             break;
         case NODE_MAP:
             printf("%c\n\r", '{');
-            for (size_t i = 0; i < (*AsMap(node)).size; ++i) {
+            for (size_t i = 0; i < (AsMap(node)).size; ++i) {
                 printf("    %s : ", node->map_value.items[i]->key);
                 PrintNode(node->map_value.items[i]->value);
                 if (i != node->map_value.size - 1) {

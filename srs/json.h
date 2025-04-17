@@ -114,5 +114,5 @@ bool AsBool(Node* node);
 В последнем случае возвращается приведённое в double значение.*/
 double AsDouble(Node* node);
 const char* AsString(Node* node);
-const Array* AsArray(Node* node);
-const Map* AsMap(Node* node);
+const Array AsArray(Node* node);
+const Map AsMap(Node* node);
